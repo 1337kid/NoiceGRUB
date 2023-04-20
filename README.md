@@ -1,5 +1,5 @@
-# NoiceGRUB
-### A simple GRUB2 theme
+# NoiceGRUB - A simple GRUB2 theme
+<img src="screenshot.png" alt='Screenshot' width="75%" height="75%"/>
 
 # Installation
 ### Using install.sh
