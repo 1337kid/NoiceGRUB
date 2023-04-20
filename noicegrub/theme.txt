@@ -1,0 +1,33 @@
+#Main
+title-text: ""
+desktop-image: "background.png"
+desktop-color: "#000000"
+terminal-left: "0"
+terminal-top: "0"
+terminal-width: "100%"
+terminal-height: "100%"
+terminal-border: "0"
+
+#Boot Menu
++ boot_menu {
+  left = 20%
+  top = 25%
+  width = 60%
+  height = 50%
+  item_color = "black"
+  selected_item_color = "#d0c4f5"
+  selected_item_pixmap_style = "select_*.png"
+  #menu_pixmap_style = "menu_*.png"
+  item_height = 30
+  item_padding = 2
+  item_spacing = 5
+}
+
++ label {
+  left = 20%
+  top = 15%
+  align = "center"
+  id = "__timeout__"
+  text = "Selected OS will start in %d seconds"
+  color = "#d0c4f5"
+}
