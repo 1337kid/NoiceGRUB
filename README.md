@@ -1,5 +1,5 @@
 # NoiceGRUB
-NoiceGRUB is a collection of linear gradient based GRUB2 themes that can be customisable. By default NoiceGRUB comes with 6 presets.
+NoiceGRUB is a collection of linear gradient based GRUB2 themes that can be customised. By default NoiceGRUB comes with 6 presets.
 ![Alt text](img/screenshot.png)
 # Installation
 ```bash
