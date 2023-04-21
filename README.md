@@ -13,10 +13,10 @@ python3 NoiceGRUB.py
 :-:|:-:
 | ![](img/1.png "Chocolate") | ![](img/2.png "Lightlime") |
 
-| Chocolate|Lightlime|
+| Noice|TheSky|
 :-:|:-:
 | ![](img/3.png "Noice") | ![](img/4.png "TheSky") |
 
-| Chocolate|Lightlime|
+| VioBlue|Wildfire|
 :-:|:-:
 | ![](img/5.png "VioBlue") | ![](img/6.png "Wildfire") |
