@@ -5,8 +5,8 @@ then
     exit
 fi
 
-mkdir -p /boot/grub/themes
-cp -r ./noicegrub /boot/grub/themes
+mkdir -p /boot/grub/themes/noicegrub
+cp ./export/* /boot/grub/themes/noicegrub
+sed -i 's/.*GRUB_THEME=.*//' /etc/default/grub
 echo "GRUB_THEME=/boot/grub/themes/noicegrub/theme.txt" >> /etc/default/grub
 update-grub
-echo "NoiceGRUB theme has been placed in '/boot/grub/themes'. You may now reboot your PC"

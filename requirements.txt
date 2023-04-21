@@ -1,0 +1,4 @@
+xmltodict
+cairosvg
+toml
+colorama

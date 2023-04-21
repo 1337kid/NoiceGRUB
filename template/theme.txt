@@ -14,8 +14,8 @@ terminal-border: "0"
   top = 25%
   width = 60%
   height = 50%
-  item_color = "black"
-  selected_item_color = "#d0c4f5"
+  item_color = {font_colour}
+  selected_item_color = {selection_font_colour}
   selected_item_pixmap_style = "select_*.png"
   #menu_pixmap_style = "menu_*.png"
   item_height = 30
@@ -28,6 +28,6 @@ terminal-border: "0"
   top = 15%
   align = "center"
   id = "__timeout__"
-  text = "Selected OS will start in %d seconds"
-  color = "#d0c4f5"
+  text = "Selected OS will boot in %d seconds"
+  color = {label_colour}
 }
