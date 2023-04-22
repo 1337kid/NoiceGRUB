@@ -10,7 +10,7 @@ o    o         o               .oPYo.  .oPYo. o    o  .oPYo.
 8  `b8 8    8  8 8    . 8.     8    8  8    8 8    8  8    8 
 8   `8 `YooP'  8 `YooP' `Yooo' `YooP8  8    8 `YooP'  8oooP' 
 ..:::..:.....::..:.....::.....::....8 :..:::..:.....::......:
-:::::::: @1337kid ::::::::::::::::::8 ::::::: v1.1 ::::::::::'''
+:::::::: @1337kid ::::::::::::::::::8 ::::::: v1.1.1 ::::::::'''
 
 def menu():
 	return '''
@@ -60,13 +60,11 @@ def generate_theme(name=True,custom=False):
 		data=get_preset(name)
 		if name=='noice':
 			cairosvg.svg2png(url='template/noice.svg', write_to='./export/background.png')
-			export_selection_png(data[0]['selection_bg_colour'])
-			export_theme_config(data[1]['font_colour'],data[1]['selection_font_colour'],data[1]['label_colour'])
-			print(Fore.GREEN + f"~ Generated theme saved to {os.getcwd()+'/export/'}" + Style.RESET_ALL)
-			return
+		else:
+			generate_background(data[0]['primary'],data[0]['secondary'])
 	if custom:
 		data=custom
-	generate_background(data[0]['primary'],data[0]['secondary'])
+		generate_background(data[0]['primary'],data[0]['secondary'])
 	export_selection_png(data[0]['selection_bg_colour'])
 	export_theme_config(data[1]['font_colour'],data[1]['selection_font_colour'],data[1]['label_colour'])
 	print(Fore.GREEN + f"~ Generated theme saved to {os.getcwd()+'/export/'}" + Style.RESET_ALL)
