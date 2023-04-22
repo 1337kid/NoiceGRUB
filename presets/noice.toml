@@ -4,17 +4,10 @@ secondary="#3A7385"
 selection_bg_colour = "#D4B5FB"
 
 [extra]
-[extra.polygon]
-colours=["#A68AD2","#79B6C3"]
-
-[extra.ellipse]
-colours=["#46CDF8","#825EE9"]
-
-[extra.circle]
-colours=["#7D32F9","#4D8EF0"]
-
-[extra.triangle]
-bgcolour="#5DDDF9"
+polygon=["#A68AD2","#79B6C3"]
+ellipse=["#46CDF8","#825EE9"]
+circle=["#7D32F9","#4D8EF0"]
+triangle="#5DDDF9"
 
 [theme]
 font_colour = "#000"
