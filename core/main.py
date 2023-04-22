@@ -27,10 +27,32 @@ def get_preset(name):
 	data=toml.load(open(f'./presets/{name}.toml'))
 	return [data['background'],data['theme']]
 #=============================================================
-def generate_background(primary,secondary):
-	svg_temp=xmltodict.parse(open('template/background.svg').read())
-	svg_temp['svg']['defs']['linearGradient']['stop'][0]['@stop-color']=primary
-	svg_temp['svg']['defs']['linearGradient']['stop'][1]['@stop-color']=secondary
+def generate_background(template,primary,secondary,extra=None):
+	svg_temp=xmltodict.parse(open(f'template/{template}.svg').read())
+	if template=='kewl':   # For Kewl Template
+		svg_temp['svg']['defs']['linearGradient']['stop'][0]['@stop-color']=primary
+		svg_temp['svg']['defs']['linearGradient']['stop'][1]['@stop-color']=secondary
+	elif template=='noice':# For Noice Template
+		# Background Gradient
+		'''
+		'extra' argument format
+		~~~~~~~~~~~~~~~~~~~~~
+		[{primary,secondary},{p,s},{p,s},triangle_colour]
+		'''
+		svg_temp['svg']['defs']['linearGradient'][0]['stop'][0]['@stop-color']=primary
+		svg_temp['svg']['defs']['linearGradient'][0]['stop'][1]['@stop-color']=secondary
+		# Topright Polygon gradient
+		svg_temp['svg']['defs']['linearGradient'][1]['stop'][0]['@stop-color']=extra[0][0]
+		svg_temp['svg']['defs']['linearGradient'][1]['stop'][1]['@stop-color']=extra[0][1]
+		# Bottomright ellipse gradient
+		svg_temp['svg']['defs']['linearGradient'][2]['stop'][0]['@stop-color']=extra[1][0]
+		svg_temp['svg']['defs']['linearGradient'][2]['stop'][1]['@stop-color']=extra[1][1]
+		# Topleft quarter circle gradient
+		svg_temp['svg']['defs']['linearGradient'][3]['stop'][0]['@stop-color']=extra[2][0]
+		svg_temp['svg']['defs']['linearGradient'][3]['stop'][1]['@stop-color']=extra[2][1]
+		# Bottomleft triangle colour
+		svg_temp['svg']['path'][0]['@fill']=extra[3]
+
 	open('temp.svg','w').write(xmltodict.unparse(svg_temp))
 	cairosvg.svg2png(url='temp.svg', write_to=f'./export/background.png')
 	os.remove('temp.svg')
