@@ -48,14 +48,13 @@ def check_colour_code(colour):
 def get_preset(name):
 	data=toml.load(open(f'./presets/{name}.toml'))
 	return [data[i] for i in data]
-	
+
 #=============================================================
 def generate_background(template,primary,secondary,menu_box_bg_colour,extra=None):
 	svg_temp=xmltodict.parse(open(f'template/{template}.svg').read())
 	if template=='kewl':   # For Kewl Template
 		svg_temp['svg']['defs']['linearGradient']['stop'][0]['@stop-color']=primary
 		svg_temp['svg']['defs']['linearGradient']['stop'][1]['@stop-color']=secondary
-		svg_temp['svg']['defs']['linearGradient']['stop'][1]['@stop-color']=menu_box_bg_colour
 	elif template=='noice':# For Noice Template
 		'''
 		'extra' argument format
@@ -64,6 +63,7 @@ def generate_background(template,primary,secondary,menu_box_bg_colour,extra=None
 		# Background Gradient
 		svg_temp['svg']['defs']['linearGradient'][0]['stop'][0]['@stop-color']=primary
 		svg_temp['svg']['defs']['linearGradient'][0]['stop'][1]['@stop-color']=secondary
+		svg_temp['svg']['rect'][1]=menu_box_bg_colour
 		# Topright Polygon gradient
 		svg_temp['svg']['defs']['linearGradient'][1]['stop'][0]['@stop-color']=extra['polygon'][0]
 		svg_temp['svg']['defs']['linearGradient'][1]['stop'][1]['@stop-color']=extra['polygon'][1]
