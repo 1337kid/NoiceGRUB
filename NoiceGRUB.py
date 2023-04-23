@@ -16,7 +16,7 @@ if choice=='0':
         exit()
     #=================
     data=[]
-    for i in range(7):
+    for i in range(6):
         colour=input(Fore.YELLOW + input_msgs[i] + Fore.WHITE)
         colour=check_colour_code(colour)
         data.append(colour)
