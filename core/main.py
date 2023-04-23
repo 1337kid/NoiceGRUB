@@ -47,10 +47,8 @@ def check_colour_code(colour):
 
 def get_preset(name):
 	data=toml.load(open(f'./presets/{name}.toml'))
-	if 'extra' in data:
-		return [data['template'],data['background'],data['theme'],data['extra']]
-	else:
-		return [data['template'],data['background'],data['theme']]
+	return [data[i] for i in data]
+	
 #=============================================================
 def generate_background(template,primary,secondary,menu_box_bg_colour,extra=None):
 	svg_temp=xmltodict.parse(open(f'template/{template}.svg').read())
