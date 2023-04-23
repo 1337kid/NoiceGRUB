@@ -3,7 +3,6 @@ template='kewl'
 [background]
 primary = "#85FFBD"
 secondary = "#FFFB7D"
-menu_box_bg_colour="#fff"
 selection_bg_colour = "#A7ED9A"
 
 [theme]
