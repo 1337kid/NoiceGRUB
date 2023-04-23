@@ -16,13 +16,17 @@ if choice=='0':
         exit()
     #=================
     data=[]
-    for i in range(6):
+    for i in range(7):
         colour=input(Fore.YELLOW + input_msgs[i] + Fore.WHITE)
         colour=check_colour_code(colour)
         data.append(colour)
+    # ***
+    background_conf={'primary':data[0],'secondary':data[1],'menu_box_bg_colour':data[2],'selection_bg_colour':data[3]}
+    theme_text_conf={'font_colour':data[5],'selection_font_colour':data[4],'label_colour':data[6]}
+    # ***
     if template=='1':
-        generate_theme(False,['kewl',{'primary':data[0],'secondary':data[1],'selection_bg_colour':data[2]},{'font_colour':data[4],'selection_font_colour':data[3],'label_colour':data[5]}])
-    elif template=='2':  # Getting extra colour values for noice theme
+        generate_theme(False,['kewl',background_conf,theme_text_conf])
+    elif template=='2':  # Getting extra colour values for noice template
         extra={}
         for i in noice_theme_extra:
             temp=[]
@@ -31,8 +35,7 @@ if choice=='0':
                 colour=check_colour_code(colour)
                 temp.append(colour)
             extra[i]=temp
-        data.append(extra)
-        generate_theme(False,['noice',{'primary':data[0],'secondary':data[1],'selection_bg_colour':data[2]},{'font_colour':data[4],'selection_font_colour':data[3],'label_colour':data[5]},data[6]])
+        generate_theme(False,['noice',background_conf,theme_text_conf,extra])
 else:
     options={'1':'chocolate','2':'lightlime','3':'thesky','4':'vioblue','5':'wildfire','6':'noice'}
     generate_theme(options[choice])
