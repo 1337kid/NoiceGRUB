@@ -13,8 +13,7 @@ o    o         o               .oPYo.  .oPYo. o    o  .oPYo.
 ..:::..:.....::..:.....::.....::....8 :..:::..:.....::......:
 :::::::: @1337kid ::::::::::::::::::8 ::::::: v1.2.2 ::::::::'''
 
-def menu():
-	return '''
+menulist = '''
 Available presets
 ~~~~~~~~~~~~~~~~~
 >> Kewl Template
@@ -25,16 +24,12 @@ Available presets
 >> Noice Template
 [6] Noice
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[0] Custom
-'''
+[0] Custom'''
 
-def template_menu():
-	return '''
+template_menu = '''
 Availabe Templates
 [1] Kewl
-[2] Noice
-
-Choice: '''
+[2] Noice'''
 
 def check_colour_code(colour):
     if not '#' in colour:colour='#'+colour

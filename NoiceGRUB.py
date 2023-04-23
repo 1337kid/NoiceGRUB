@@ -1,16 +1,17 @@
-from core.main import generate_theme,banner,menu,check_colour_code,template_menu
+from core.main import generate_theme,banner,menulist,check_colour_code,template_menu
 from colorama import Fore, Style
 import os
 from core.msgs import *
 
 print(Fore.CYAN + banner() + Style.RESET_ALL)
-print(Fore.GREEN + menu() + Style.RESET_ALL)
+print(Fore.GREEN + menulist + Style.RESET_ALL)
 choice=input(Fore.YELLOW+'Choice: '+Style.RESET_ALL)
 if choice not in '0123456':
     print(Fore.RED + 'Invalid choice')
     exit()
 if choice=='0':
-    template=input(Fore.YELLOW + template_menu() + Style.RESET_ALL)
+    print(Fore.GREEN + template_menu + Style.RESET_ALL)
+    template=input(Fore.YELLOW + 'Choice: ' + Style.RESET_ALL)
     if template not in '12':
         print(Fore.RED + 'Invalid choice')
         exit()
