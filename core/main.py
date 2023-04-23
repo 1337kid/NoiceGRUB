@@ -50,16 +50,14 @@ def get_preset(name):
 	return [data[i] for i in data]
 
 #=============================================================
+menu_box_placement={'kewl':[4,6],'noice':[3,9]}
+
 def generate_background(template,primary,secondary,extra=None):
 	svg_temp=xmltodict.parse(open(f'template/{template}.svg').read())
 	if template=='kewl':   # For Kewl Template
 		svg_temp['svg']['defs']['linearGradient']['stop'][0]['@stop-color']=primary
 		svg_temp['svg']['defs']['linearGradient']['stop'][1]['@stop-color']=secondary
 	elif template=='noice':# For Noice Template
-		'''
-		'extra' argument format
-		~~~~~~~~~~~~~~~~~~~~~
-		'''
 		# Background Gradient
 		svg_temp['svg']['defs']['linearGradient'][0]['stop'][0]['@stop-color']=primary
 		svg_temp['svg']['defs']['linearGradient'][0]['stop'][1]['@stop-color']=secondary
@@ -75,14 +73,18 @@ def generate_background(template,primary,secondary,extra=None):
 		svg_temp['svg']['defs']['linearGradient'][3]['stop'][1]['@stop-color']=extra['circle'][1]
 		# Bottomleft triangle colour
 		svg_temp['svg']['path'][0]['@fill']=extra['triangle'][0]
-	open('temp1.svg','w').write(xmltodict.unparse(svg_temp,pretty=True))
-	if template=='noice':
-		data=open('temp1.svg').readlines()
-		menu_box=data.pop(3)
-		data.insert(9,menu_box)
-		open('temp1.svg','w').writelines(data)
-	cairosvg.svg2png(url='temp1.svg', write_to=f'./export/background.png')
-	#os.remove('temp.svg')
+	open('temp.svg','w').write(xmltodict.unparse(svg_temp,pretty=True))
+	'''
+	When unparsing, xmltodict changes the order of elements.
+	The below code is to keep <rect> tag of menubox in its place
+	'''
+	data=open('temp.svg').readlines()
+	menu_box=data.pop(menu_box_placement[template][0]) 
+	data.insert(menu_box_placement[template][1],menu_box)
+	open('temp.svg','w').writelines(data)
+	#=============
+	cairosvg.svg2png(url='temp.svg', write_to=f'./export/background.png')
+	os.remove('temp.svg')
 
 def export_selection_png(primary):
 	filenames=['select_c','select_e','select_w']
