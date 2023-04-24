@@ -2,35 +2,6 @@ import xmltodict,cairosvg,os,toml
 from colorama import Fore, Style
 import re
 
-def banner():
-	return '''                                                
-o    o         o               .oPYo.  .oPYo. o    o  .oPYo. 
-8b   8                         8    8  8   `8 8    8  8   `8 
-8`b  8 .oPYo. o8 .oPYo. .oPYo. 8      o8YooP' 8    8 o8YooP' 
-8 `b 8 8    8  8 8    ' 8oooo8 8   oo  8   `b 8    8  8   `b 
-8  `b8 8    8  8 8    . 8.     8    8  8    8 8    8  8    8 
-8   `8 `YooP'  8 `YooP' `Yooo' `YooP8  8    8 `YooP'  8oooP' 
-..:::..:.....::..:.....::.....::....8 :..:::..:.....::......:
-:::::::: @1337kid ::::::::::::::::::8 ::::::: v1.2.2 ::::::::'''
-
-menulist = '''
-Available presets
-~~~~~~~~~~~~~~~~~
->> Kewl Template
-[1] Chocolate	 [4] VioBlue
-[2] Lightlime    [5] Wildfire
-[3] TheSky
-
->> Noice Template
-[6] Noice
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[0] Custom'''
-
-template_menu = '''
-Availabe Templates
-[1] Kewl
-[2] Noice (Incomplete)'''
-
 def check_colour_code(colour):
     if not '#' in colour:colour='#'+colour
     match = re.search(r'^#(?:[0-9a-fA-F]{3}){1,2}$', colour)
@@ -45,16 +16,21 @@ def get_preset(name):
 
 #=============================================================
 menu_box_placement={'kewl':[4,6],'noice':[3,9]}
+header_footer_placement={'kewl':[1,0],'noice':[5,3]}
 
-def generate_background(template,primary,secondary,extra=None):
+def generate_background(template,background_props,extra=None):
 	svg_temp=xmltodict.parse(open(f'template/{template}.svg').read())
+	#=== header & footer font colour
+	svg_temp['svg']['path'][header_footer_placement[template][0]]['@fill']=background_props[2]
+	svg_temp['svg']['path'][header_footer_placement[template][1]]['@fill']=background_props[3]
+	#===
 	if template=='kewl':   # For Kewl Template
-		svg_temp['svg']['defs']['linearGradient']['stop'][0]['@stop-color']=primary
-		svg_temp['svg']['defs']['linearGradient']['stop'][1]['@stop-color']=secondary
+		svg_temp['svg']['defs']['linearGradient']['stop'][0]['@stop-color']=background_props[0]
+		svg_temp['svg']['defs']['linearGradient']['stop'][1]['@stop-color']=background_props[1]
 	elif template=='noice':# For Noice Template
 		# Background Gradient
-		svg_temp['svg']['defs']['linearGradient'][0]['stop'][0]['@stop-color']=primary
-		svg_temp['svg']['defs']['linearGradient'][0]['stop'][1]['@stop-color']=secondary
+		svg_temp['svg']['defs']['linearGradient'][0]['stop'][0]['@stop-color']=background_props[0]
+		svg_temp['svg']['defs']['linearGradient'][0]['stop'][1]['@stop-color']=background_props[1]
 		svg_temp['svg']['rect'][1]['@fill']=extra['menuboxbg'][0]
 		# Topright Polygon gradient
 		svg_temp['svg']['defs']['linearGradient'][1]['stop'][0]['@stop-color']=extra['polygon'][0]
@@ -105,10 +81,13 @@ def generate_theme(name=True,custom=False):
 		data=get_preset(name)
 	if custom:
 		data=custom
+	#=====
+	background_props=[data[1]['primary'],data[1]['secondary'],data[1]['header_font_colour'],data[1]['footer_font_colour']]
+	#=====
 	if data[0]=='kewl':
-		generate_background('kewl',data[1]['primary'],data[1]['secondary'])
+		generate_background('kewl',background_props)
 	elif data[0]=='noice':
-		generate_background('noice',data[1]['primary'],data[1]['secondary'],data[3])
+		generate_background('noice',background_props,data[3])
 	export_selection_png(data[1]['selection_bg_colour'])
 	export_theme_config(data[2]['font_colour'],data[2]['selection_font_colour'],data[2]['label_colour'])
 	print(Fore.GREEN + f"~ Generated theme saved to {os.getcwd()+'/export/'}" + Style.RESET_ALL)
