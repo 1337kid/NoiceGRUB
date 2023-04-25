@@ -4,7 +4,7 @@
 * [**Installation**][1]
 * [**Presets**][2]
     * [**Create Your Own Preset**][3]
-    * [**Preset Gallery**][3]
+    * [**Preset Gallery**][4]
 
 ![Screenshot](img/screenshot.png)
 ## [Installation][1]
