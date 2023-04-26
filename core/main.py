@@ -1,6 +1,8 @@
 import xmltodict,cairosvg,os,toml
 from colorama import Fore, Style
+from core.templateconf import *
 import re
+
 
 def check_colour_code(colour):
     if not '#' in colour:colour='#'+colour
@@ -15,8 +17,6 @@ def get_preset(name):
 	return [data[i] for i in data]
 
 #=============================================================
-menu_box_placement={'kewl':[4,6],'noice':[3,9]}
-header_footer_placement={'kewl':[1,0],'noice':[5,3]}
 
 def generate_background(template,background_props,extra=None):
 	svg_temp=xmltodict.parse(open(f'template/{template}.svg').read())
@@ -24,10 +24,10 @@ def generate_background(template,background_props,extra=None):
 	svg_temp['svg']['path'][header_footer_placement[template][0]]['@fill']=background_props[2]
 	svg_temp['svg']['path'][header_footer_placement[template][1]]['@fill']=background_props[3]
 	#===
-	if template=='kewl':   # For Kewl Template
+	if template=='Kewl':   # For Kewl Template
 		svg_temp['svg']['defs']['linearGradient']['stop'][0]['@stop-color']=background_props[0]
 		svg_temp['svg']['defs']['linearGradient']['stop'][1]['@stop-color']=background_props[1]
-	elif template=='noice':# For Noice Template
+	elif template=='Noice':# For Noice Template
 		# Background Gradient
 		svg_temp['svg']['defs']['linearGradient'][0]['stop'][0]['@stop-color']=background_props[0]
 		svg_temp['svg']['defs']['linearGradient'][0]['stop'][1]['@stop-color']=background_props[1]
@@ -43,6 +43,25 @@ def generate_background(template,background_props,extra=None):
 		svg_temp['svg']['defs']['linearGradient'][3]['stop'][1]['@stop-color']=extra['circle'][1]
 		# Bottomleft triangle colour
 		svg_temp['svg']['path'][0]['@fill']=extra['triangle'][0]
+	elif template=='TheMan':# For TheMan template
+		# Background Gradient
+		svg_temp['svg']['defs']['linearGradient'][0]['stop'][0]['@stop-color']=background_props[0]
+		svg_temp['svg']['defs']['linearGradient'][0]['stop'][1]['@stop-color']=background_props[1]
+		# CentreLeft lines linear gradient
+		svg_temp['svg']['defs']['linearGradient'][1]['stop'][0]['@stop-color']=extra['centreleftlines'][0]
+		svg_temp['svg']['defs']['linearGradient'][1]['stop'][1]['@stop-color']=extra['centreleftlines'][1]
+		svg_temp['svg']['defs']['linearGradient'][1]['stop'][2]['@stop-color']=extra['centreleftlines'][2]
+		# Bottomright lines linear gradient
+		svg_temp['svg']['defs']['linearGradient'][2]['stop'][0]['@stop-color']=extra['bottomrightlines'][0]
+		svg_temp['svg']['defs']['linearGradient'][2]['stop'][1]['@stop-color']=extra['bottomrightlines'][1]
+		# Man - linear gradient
+		svg_temp['svg']['defs']['linearGradient'][3]['stop'][0]['@stop-color']=extra['man'][0]
+		svg_temp['svg']['defs']['linearGradient'][3]['stop'][1]['@stop-color']=extra['man'][1]
+		# bottomleft polygon
+		svg_temp['svg']['defs']['linearGradient'][4]['stop'][0]['@stop-color']=extra['polygon'][0]
+		svg_temp['svg']['defs']['linearGradient'][4]['stop'][1]['@stop-color']=extra['polygon'][0]
+		# hexagon colour
+		svg_temp['svg']['path'][3]['@fill']=extra['hexagon'][0]
 	open('temp.svg','w').write(xmltodict.unparse(svg_temp,pretty=True))
 	'''
 	When unparsing, xmltodict changes the order of elements.
@@ -84,10 +103,10 @@ def generate_theme(name=True,custom=False):
 	#=====
 	background_props=[data[1]['primary'],data[1]['secondary'],data[1]['header_font_colour'],data[1]['footer_font_colour']]
 	#=====
-	if data[0]=='kewl':
-		generate_background('kewl',background_props)
-	elif data[0]=='noice':
-		generate_background('noice',background_props,data[3])
+	if data[0]=='Kewl':
+		generate_background('Kewl',background_props)
+	else:
+		generate_background(data[0],background_props,data[3])
 	export_selection_png(data[1]['selection_bg_colour'])
 	export_theme_config(data[2]['font_colour'],data[2]['selection_font_colour'],data[2]['label_colour'])
 	print(Fore.GREEN + f"~ Generated theme saved to {os.getcwd()+'/export/'}" + Style.RESET_ALL)

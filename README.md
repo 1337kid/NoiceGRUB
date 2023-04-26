@@ -1,5 +1,5 @@
 # NoiceGRUB
-#### NoiceGRUB is a collection of linear gradient based GRUB2 themes that can be customised. By default NoiceGRUB comes with 2 templates and 6 presets.
+#### NoiceGRUB is a collection of linear gradient based GRUB2 themes that can be customised. By default NoiceGRUB comes with 3 templates and 6 presets.
 # Contents
 * [**Installation**][1]
 * [**Presets**][2]
@@ -47,20 +47,29 @@ ellipse=["primary gradeint colour of bottomright eliipse","secondary gradient co
 circle=["primary gradeint colour of topleft circle","secondary gradient colour"]
 triangle=["background colour of bottom left triangle"]
 ```
+#### TheMan template extra section
+```toml
+[extra]
+centreleftlines=["centre-left lines, primary gradient colour","secondary gradient colour","tertiary gradient colour"]
+bottomrightlines=["bottomright lines, primary gradient colour","secondary gradient colour"]
+man=["primary gradient colour of the man","secondary gradient colour"]
+polygon=["colour of bottomleft polygon"]
+hexagon=["colour of topright hexagon"]
+```
 
 ### [Preset Gallery][4]
 
-| Chocolate|Lightlime|
+| GradientGuy|VioBlue|
 :-:|:-:
-| ![](img/1.png "Chocolate") | ![](img/2.png "Lightlime") |
+| ![](img/1.png "GradientGuy") | ![](img/5.png "VioBlue") |
 
 | Noice|TheSky|
 :-:|:-:
 | ![](img/3.png "Noice") | ![](img/4.png "TheSky") |
 
-| VioBlue|Wildfire|
+| Lightlime|Wildfire|
 :-:|:-:
-| ![](img/5.png "VioBlue") | ![](img/6.png "Wildfire") |
+| ![](img/2.png "Lightlime") | ![](img/6.png "Wildfire") |
 
 
 [1]: #installation

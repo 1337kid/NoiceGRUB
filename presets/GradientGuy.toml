@@ -1,0 +1,20 @@
+template='TheMan'
+
+[background]
+primary = "#1C0334"
+secondary = "#031C20"
+header_font_colour = "#fff"
+footer_font_colour = "#fff"
+selection_bg_colour = "#6C2082"
+
+[theme]
+font_colour = "#fff"
+selection_font_colour = "#fff"
+label_colour = "#fff"
+
+[extra]
+centreleftlines=["#63FFF6","#693DE6","#B826C5"]
+bottomrightlines=["#C2E06A","#6BDAC6"]
+man=["#E9DC6F","#2F8777"]
+polygon=["#2CF2FF"]
+hexagon=["#123871"]

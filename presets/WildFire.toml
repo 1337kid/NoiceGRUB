@@ -1,11 +1,11 @@
-template='kewl'
+template='Kewl'
 
 [background]
-primary = "#AE2EEA"
-secondary = "#1C3D92"
+primary = "#842304"
+secondary = "#A59508"
 header_font_colour = "#fff"
 footer_font_colour = "#fff"
-selection_bg_colour = "#D594F4"
+selection_bg_colour = "#E64B19"
 
 [theme]
 font_colour = "#fff"
