@@ -6,7 +6,8 @@ class NgNoiceTemplate(NgCommonProps):
         self.template = 'Noice'
         self.extra_props = preset[3]
         
-    def set_extra_props(self):
+        self.set_common_props()
+
         self.svg_temp['svg']['rect'][1]['@fill']=self.extra_props['menuboxbg'][0]
         # Topright Polygon gradient
         self.svg_temp['svg']['defs']['linearGradient'][1]['stop'][0]['@stop-color']=self.extra_props['polygon'][0]

@@ -5,8 +5,9 @@ class NgTheManTemplate(NgCommonProps):
         super().__init__(preset)
         self.template = 'TheMan'
         self.extra_props = preset[3]
+
+        self.set_common_props()
         
-    def set_extra_props(self):
         # CentreLeft lines linear gradient
         self.svg_temp['svg']['defs']['linearGradient'][1]['stop'][0]['@stop-color']=self.extra_props['centreleftlines'][0]
         self.svg_temp['svg']['defs']['linearGradient'][1]['stop'][1]['@stop-color']=self.extra_props['centreleftlines'][1]
