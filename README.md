@@ -62,6 +62,7 @@ hexagon=["colour of topright hexagon"]
 menubox=['menubox background colour']
 mountains=["primary gradient colour of the mountain","secondary gradient colour"]
 circle=["primary gradient colour of topleft circle","secondary gradient colour"]
+```
 ### [Preset Gallery][4]
 
 | GradientGuy|VioBlue|
