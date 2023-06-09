@@ -6,7 +6,7 @@ from colorama import Style,Fore
 
 print(Fore.CYAN + banner + Style.RESET_ALL)
 table,preset_dict = preset_table()
-print(Fore.GREEN +'\nAvailable Presets\n', table ,'\n\n[0] Instructions for creating a preset\n'+Style.RESET_ALL,sep='')
+print(Fore.GREEN +'\nAvailable Presets\n', table ,'\n\nInstructions for creating a preset can be found in README.md\n'+Style.RESET_ALL,sep='')
 
 try:
     choice=int(input(Fore.YELLOW+'Choice: '+Style.RESET_ALL))
