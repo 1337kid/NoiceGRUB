@@ -1,4 +1,4 @@
-from noicegrub.theme import NgCommonProps
+from noicegrub.template import NgCommonProps
 
 class NgNoiceTemplate(NgCommonProps):
     def __init__(self,preset):

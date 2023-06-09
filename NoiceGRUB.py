@@ -1,7 +1,7 @@
 from noicegrub import *
-from noicegrub.theme import NgCommonProps
-from noicegrub.theme.noice import NgNoiceTemplate
-from noicegrub.theme.theman import NgTheManTemplate
+from noicegrub.template import NgCommonProps
+from noicegrub.template.noice import NgNoiceTemplate
+from noicegrub.template.theman import NgTheManTemplate
 from colorama import Style,Fore
 
 print(Fore.CYAN + banner + Style.RESET_ALL)
@@ -19,12 +19,9 @@ except ValueError:
 
 preset = get_preset(preset_dict[choice])
 
-if preset[0]=='Kewl':
-    theme = NgCommonProps(preset)
-elif preset[0]=='Noice':
-    theme = NgNoiceTemplate(preset)
-elif preset[0]=='TheMan':
-    theme = NgTheManTemplate(preset)
+if preset[0]=='Kewl': theme = NgCommonProps(preset)
+elif preset[0]=='Noice': theme = NgNoiceTemplate(preset)
+elif preset[0]=='TheMan': theme = NgTheManTemplate(preset)
 
 theme.set_common_props()
 if preset[0]!='Kewl': theme.set_extra_props()
