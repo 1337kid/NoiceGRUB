@@ -1,5 +1,5 @@
 # NoiceGRUB
-#### NoiceGRUB is a collection of linear gradient based GRUB2 themes that can be customised. By default NoiceGRUB comes with 3 templates and 6 presets.
+#### NoiceGRUB is a collection of linear gradient based GRUB2 themes that can be customised. By default NoiceGRUB comes with 4 templates and 8 presets.
 # Contents
 * [**Installation**][1]
 * [**Presets**][2]
@@ -56,7 +56,12 @@ man=["primary gradient colour of the man","secondary gradient colour"]
 polygon=["colour of bottomleft polygon"]
 hexagon=["colour of topright hexagon"]
 ```
-
+#### Mountains template extra section
+```toml
+[extra]
+menubox=['menubox background colour']
+mountains=["primary gradient colour of the mountain","secondary gradient colour"]
+circle=["primary gradient colour of topleft circle","secondary gradient colour"]
 ### [Preset Gallery][4]
 
 | GradientGuy|VioBlue|
@@ -66,6 +71,10 @@ hexagon=["colour of topright hexagon"]
 | Noice|TheSky|
 :-:|:-:
 | ![](img/3.png "Noice") | ![](img/4.png "TheSky") |
+
+| Mountains|Mountains2|
+:-:|:-:
+| ![](img/7.png "Mountains") | ![](img/8.png "Mountains2") |
 
 | Lightlime|Wildfire|
 :-:|:-:

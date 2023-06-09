@@ -1,0 +1,18 @@
+template='Mountains'
+
+[background]
+primary = "#0C6DB2"
+secondary = "#00BE9C"
+header_font_colour = "#4AF2C0"
+footer_font_colour = "#63D2C5"
+selection_bg_colour = "#57F2CD"
+
+[theme]
+font_colour = "#000"
+selection_font_colour = "#fff"
+label_colour = "#000"
+
+[extra]
+menubox=['#000']
+mountains=["#1B5F7C","#06361C"]
+circle=["#48C1E8","#19D3A7"]
