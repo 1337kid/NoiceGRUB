@@ -1,3 +1,5 @@
-core/__pycache__/
 export/
 tests/
+.venv/
+noicegrub/__pycache__/
+noicegrub/theme/__pycache__/
