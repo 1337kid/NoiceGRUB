@@ -2,3 +2,4 @@ xmltodict
 cairosvg
 toml
 colorama
+prettytable

@@ -1,21 +1,33 @@
 from core.main import generate_theme,check_colour_code
 from colorama import Fore, Style
-import os
+from prettytable import PrettyTable
 from core.msgs import *
+import os,toml
 
 print(Fore.CYAN + banner + Style.RESET_ALL)
-print(Fore.GREEN + menulist + Style.RESET_ALL)
+#======= Preset Table
+files=os.listdir('presets')
+table = PrettyTable(['No.','Preset', 'Template'])
+presets=[{i.split('.')[0]:toml.load(open(f'presets/{i}'))['template']} for i in files]
+for i in presets:
+    preset=list(i.keys())[0]
+    table.add_row([presets.index(i)+1,preset,i[preset]])
+print(Fore.GREEN +'\nAvailable Presets\n', table ,'\n[0] Custom\n'+Style.RESET_ALL,sep='')
+#=======
 choice=input(Fore.YELLOW+'Choice: '+Style.RESET_ALL)
 if choice not in '0123456':
     print(Fore.RED + 'Invalid choice')
     exit()
 if choice=='0':
-    print(Fore.GREEN + template_menu + Style.RESET_ALL)
-    template=input(Fore.YELLOW + 'Choice: ' + Style.RESET_ALL)
+    #======= Template Table
+    table = PrettyTable(['No.','Templates'])
+    table.add_rows([[1,'Kewl'],[2,'Noice']])
+    print(Fore.GREEN , table , Style.RESET_ALL,sep='')
+    template=input(Fore.YELLOW + '\nChoice: ' + Style.RESET_ALL)
+    #=======
     if template not in '12':
         print(Fore.RED + 'Invalid choice')
         exit()
-    #=================
     data=[]
     for i in range(8):
         colour=input(Fore.YELLOW + input_msgs[i] + Fore.WHITE)
@@ -38,8 +50,7 @@ if choice=='0':
             extra[i]=temp
         generate_theme(False,['noice',background_conf,theme_text_conf,extra])
 else:
-    options={'1':'chocolate','2':'lightlime','3':'thesky','4':'vioblue','5':'wildfire','6':'noice'}
-    generate_theme(options[choice])
+    generate_theme(list(presets[int(choice)-1].keys())[0])
 install_theme=input(Fore.YELLOW + 'Do you want to place the generated theme in /boot/grub/themes/ (Y/N)? ' + Fore.WHITE).lower()
 if install_theme=='y':
     print('\n'+Fore.CYAN)
