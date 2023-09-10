@@ -25,7 +25,7 @@ Select a preset
 
 def get_preset(name):
 	data=toml.load(open(f'./presets/{name}.toml'))
-	return [data['background'],data['theme']]
+	return [data['title'],data['background'],data['theme'],data['extra']]
 #=============================================================
 def generate_background(template,primary,secondary,extra=None):
 	svg_temp=xmltodict.parse(open(f'template/{template}.svg').read())
@@ -78,13 +78,12 @@ def generate_theme(name=True,custom=False):
 	print(Fore.GREEN + '~ Generating theme' + Style.RESET_ALL)
 	if name:
 		data=get_preset(name)
-		if name=='noice':
-			cairosvg.svg2png(url='template/noice.svg', write_to='./export/background.png')
-		else:
-			generate_background('kewl',data[0]['primary'],data[0]['secondary'])
 	if custom:
 		data=custom
-		generate_background(data[0]['primary'],data[0]['secondary'])
-	export_selection_png(data[0]['selection_bg_colour'])
-	export_theme_config(data[1]['font_colour'],data[1]['selection_font_colour'],data[1]['label_colour'])
+	if data[0]=='kewl':
+		generate_background('kewl',data[1]['primary'],data[1]['secondary'])
+	elif:
+		generate_background('noice',data[1]['primary'],data[1]['secondary'],data[3])
+	export_selection_png(data[1]['selection_bg_colour'])
+	export_theme_config(data[0]['font_colour'],data[1]['selection_font_colour'],data[0]['label_colour'])
 	print(Fore.GREEN + f"~ Generated theme saved to {os.getcwd()+'/export/'}" + Style.RESET_ALL)

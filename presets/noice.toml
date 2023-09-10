@@ -1,15 +1,17 @@
+template='noice'
+
 [background]
 primary="#806CFB"
 secondary="#3A7385"
 selection_bg_colour = "#D4B5FB"
+
+[theme]
+font_colour = "#000"
+selection_font_colour = "#d0c4f5"
+label_colour = "#d0c4f5"
 
 [extra]
 polygon=["#A68AD2","#79B6C3"]
 ellipse=["#46CDF8","#825EE9"]
 circle=["#7D32F9","#4D8EF0"]
 triangle="#5DDDF9"
-
-[theme]
-font_colour = "#000"
-selection_font_colour = "#d0c4f5"
-label_colour = "#d0c4f5"
