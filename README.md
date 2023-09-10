@@ -3,7 +3,7 @@
 # Contents
 * [**Installation**][1]
 * [**Presets**][2]
-    * [**Create Own Preset**][3]
+    * [**Create Your Own Preset**][3]
     * [**Preset Gallery**][3]
 
 ![Screenshot](img/screenshot.png)
@@ -15,7 +15,7 @@ pip3 install -r requirements.txt
 python3 NoiceGRUB.py
 ```
 ## [Presets][2]
-### [Create Own Preset][3]
+### [Create Your Own Preset][3]
 NoiceGRUB preset files have the syntax of TOML and ends with `.toml` extension. Your own preset shall be placed in `presets` folder. It will be shown in the preset menu when you execute `NoiceGRUB.py`
 #### File format
 ```toml
@@ -65,5 +65,5 @@ triangle=["background colour of bottom left triangle"]
 
 [1]: #installation
 [2]: #presets
-[3]: #create-own-preset
+[3]: #create-your-own-preset
 [4]: #preset-gallery
