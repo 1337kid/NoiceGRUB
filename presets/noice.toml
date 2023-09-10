@@ -5,19 +5,16 @@ selection_bg_colour = "#D4B5FB"
 
 [extra]
 [extra.polygon]
-primary="#A68AD2"
-secondary="#79B6C3"
+colours=["#A68AD2","#79B6C3"]
 
 [extra.ellipse]
-primary="#46CDF8"
-secondary="#825EE9"
+colours=["#46CDF8","#825EE9"]
 
 [extra.circle]
-primary="#7D32F9"
-secondary="#4D8EF0"
+colours=["#7D32F9","#4D8EF0"]
 
 [extra.triangle]
-bgcolor="#5DDDF9"
+bgcolour="#5DDDF9"
 
 [theme]
 font_colour = "#000"

@@ -36,7 +36,6 @@ def generate_background(template,primary,secondary,extra=None):
 		'''
 		'extra' argument format
 		~~~~~~~~~~~~~~~~~~~~~
-		[{primary,secondary},{p,s},{p,s},triangle_colour]
 		'''
 		# Background Gradient
 		svg_temp['svg']['defs']['linearGradient'][0]['stop'][0]['@stop-color']=primary
