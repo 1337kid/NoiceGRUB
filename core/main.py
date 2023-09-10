@@ -29,7 +29,7 @@ Available presets
 template_menu = '''
 Availabe Templates
 [1] Kewl
-[2] Noice'''
+[2] Noice (Incomplete)'''
 
 def check_colour_code(colour):
     if not '#' in colour:colour='#'+colour
