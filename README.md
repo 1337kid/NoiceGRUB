@@ -12,3 +12,11 @@ python3 NoiceGRUB.py
 | Chocolate|Lightlime|
 :-:|:-:
 | ![](img/1.png "Chocolate") | ![](img/2.png "Lightlime") |
+
+| Chocolate|Lightlime|
+:-:|:-:
+| ![](img/3.png "Noice") | ![](img/4.png "TheSky") |
+
+| Chocolate|Lightlime|
+:-:|:-:
+| ![](img/5.png "VioBlue") | ![](img/6.png "Wildfire") |
