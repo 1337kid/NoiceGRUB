@@ -19,13 +19,9 @@ except ValueError:
 
 preset = get_preset(preset_dict[choice])
 
-if preset[0]=='Kewl': theme = NgCommonProps(preset)
-elif preset[0]=='Noice': theme = NgNoiceTemplate(preset)
-elif preset[0]=='TheMan': theme = NgTheManTemplate(preset)
-
-theme.set_common_props()
-if preset[0]!='Kewl': theme.set_extra_props()
-theme.export_theme()
+if preset[0]=='Kewl': theme = NgCommonProps(preset).export_theme()
+elif preset[0]=='Noice': theme = NgNoiceTemplate(preset).export_theme()
+elif preset[0]=='TheMan': theme = NgTheManTemplate(preset).export_theme()
 
 install_theme=input(Fore.YELLOW + 'Do you want to place the generated theme in /boot/grub/themes/ (Y/N)? ' + Fore.WHITE).lower()
 if install_theme=='y':

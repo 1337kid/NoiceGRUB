@@ -8,7 +8,8 @@ class NgCommonProps():
         self.template = 'Kewl'
         self.common_props = preset[1]
         self.theme_txt_conf = preset[2]
-        self.svg_temp = ''
+        
+        self.set_common_props()
         
     def set_common_props(self):
         self.svg_temp=xmltodict.parse(open(f'template/{self.template}.svg').read())
