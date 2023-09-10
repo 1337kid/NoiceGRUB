@@ -1,4 +1,4 @@
-### [Create Your Own Preset]
+### Create Your Own Preset
 NoiceGRUB preset files have the syntax of TOML and ends with `.toml` extension. Your own preset shall be placed in `presets` folder. It will be shown in the preset menu when you execute `NoiceGRUB.py`
 #### File format
 ```toml
