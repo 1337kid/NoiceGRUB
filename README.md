@@ -6,7 +6,6 @@
     * [**Create Your Own Preset**][3]
     * [**Preset Gallery**][4]
 
-
 ![Screenshot](img/screenshot.png)
 ## [Installation][1]
 ```bash
