@@ -17,7 +17,7 @@ table,preset_dict = preset_table()
 console.print(table)
 print("[cyan bold][ 0 ][/cyan bold] [green bold]Instructions for creating a preset[/green bold]")
 
-choice = IntPrompt.ask("[yellow]Choice[/yellow]",choices=[str(i) for i in range(9)])
+choice = IntPrompt.ask("[yellow]Choice[/yellow]",choices=[str(i) for i in range(len(os.listdir('presets'))+1)])
 if choice==0:
     console.print(Markdown(open('noicegrub/createpreset.md').read()))
     exit()
