@@ -2,4 +2,4 @@ export/
 tests/
 .venv/
 noicegrub/__pycache__/
-noicegrub/theme/__pycache__/
+noicegrub/template/__pycache__/
