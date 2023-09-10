@@ -1,9 +1,9 @@
-from core.main import generate_theme,banner,menulist,check_colour_code,template_menu
+from core.main import generate_theme,check_colour_code
 from colorama import Fore, Style
 import os
 from core.msgs import *
 
-print(Fore.CYAN + banner() + Style.RESET_ALL)
+print(Fore.CYAN + banner + Style.RESET_ALL)
 print(Fore.GREEN + menulist + Style.RESET_ALL)
 choice=input(Fore.YELLOW+'Choice: '+Style.RESET_ALL)
 if choice not in '0123456':
@@ -17,21 +17,21 @@ if choice=='0':
         exit()
     #=================
     data=[]
-    for i in range(6):
+    for i in range(8):
         colour=input(Fore.YELLOW + input_msgs[i] + Fore.WHITE)
         colour=check_colour_code(colour)
         data.append(colour)
     # ***
-    background_conf={'primary':data[0],'secondary':data[1],'selection_bg_colour':data[2]}
-    theme_text_conf={'font_colour':data[4],'selection_font_colour':data[3],'label_colour':data[5]}
+    background_conf={'primary':data[0],'secondary':data[1],'header_font_colour':data[2],'footer_font_colour':data[3],'selection_bg_colour':data[4]}
+    theme_text_conf={'font_colour':data[6],'selection_font_colour':data[5],'label_colour':data[7]}
     # ***
     if template=='1':
         generate_theme(False,['kewl',background_conf,theme_text_conf])
     elif template=='2':  # Getting extra colour values for noice template
         extra={}
-        for i in noice_theme_extra:
+        for i in noice_template_extra:
             temp=[]
-            for j in noice_theme_extra[i]:
+            for j in noice_template_extra[i]:
                 colour=input(Fore.YELLOW + j + Fore.WHITE)
                 colour=check_colour_code(colour)
                 temp.append(colour)

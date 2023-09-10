@@ -3,6 +3,8 @@ template='kewl'
 [background]
 primary = "#AE2EEA"
 secondary = "#1C3D92"
+header_font_colour = "#fff"
+footer_font_colour = "#fff"
 selection_bg_colour = "#D594F4"
 
 [theme]
