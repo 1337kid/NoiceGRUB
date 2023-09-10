@@ -3,6 +3,8 @@
 # Installation
 ### Using install.sh
 ```bash
+git clone https://github.com/1337kid/NoiceGRUB.git
+cd NoiceGRUB
 chmod +x install.sh
 sudo ./install.sh
 ```
