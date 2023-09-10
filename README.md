@@ -11,6 +11,8 @@
 ```bash
 git clone https://github.com/1337kid/NoiceGRUB.git
 cd NoiceGRUB
+python3 -m virtualenv .venv
+source .venv/bin/activate
 pip3 install -r requirements.txt
 python3 NoiceGRUB.py
 ```
