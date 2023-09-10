@@ -1,5 +1,6 @@
 import xmltodict,cairosvg,os,toml
 from colorama import Fore, Style
+import re
 
 def banner():
 	return '''                                                
@@ -14,18 +15,42 @@ o    o         o               .oPYo.  .oPYo. o    o  .oPYo.
 
 def menu():
 	return '''
-Select a preset
-~~~~~~~~~~~~~~
-[1] Chocolate	    [4] TheSky
-[2] Lightlime	    [5] VioBlue
-[3] Noice (Special) [6] Wildfire
+Available presets
+~~~~~~~~~~~~~~~~~
+>> Kewl Template
+[1] Chocolate	 [4] VioBlue
+[2] Lightlime    [5] Wildfire
+[3] TheSky
+
+>> Noice Template
+[6] Noice
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [0] Custom
-	'''
+'''
+
+def template_menu():
+	return '''
+Availabe Templates
+[1] Kewl
+[2] Noice
+
+Choice:
+'''
+
+def check_colour_code(colour):
+    if not '#' in colour:colour='#'+colour
+    match = re.search(r'^#(?:[0-9a-fA-F]{3}){1,2}$', colour)
+    if not match:
+        print(Fore.RED + 'Invalid colour code')
+        exit()
+    return colour
 
 def get_preset(name):
 	data=toml.load(open(f'./presets/{name}.toml'))
-	return [data['title'],data['background'],data['theme'],data['extra']]
+	if 'extra' in data:
+		return [data['template'],data['background'],data['theme'],data['extra']]
+	else:
+		return [data['template'],data['background'],data['theme']]
 #=============================================================
 def generate_background(template,primary,secondary,extra=None):
 	svg_temp=xmltodict.parse(open(f'template/{template}.svg').read())
@@ -50,7 +75,7 @@ def generate_background(template,primary,secondary,extra=None):
 		svg_temp['svg']['defs']['linearGradient'][3]['stop'][0]['@stop-color']=extra['circle'][0]
 		svg_temp['svg']['defs']['linearGradient'][3]['stop'][1]['@stop-color']=extra['circle'][1]
 		# Bottomleft triangle colour
-		svg_temp['svg']['path'][0]['@fill']=extra['triangle']
+		svg_temp['svg']['path'][0]['@fill']=extra['triangle'][0]
 	open('temp.svg','w').write(xmltodict.unparse(svg_temp))
 	cairosvg.svg2png(url='temp.svg', write_to=f'./export/background.png')
 	os.remove('temp.svg')
@@ -82,8 +107,8 @@ def generate_theme(name=True,custom=False):
 		data=custom
 	if data[0]=='kewl':
 		generate_background('kewl',data[1]['primary'],data[1]['secondary'])
-	elif:
+	elif data[0]=='noice':
 		generate_background('noice',data[1]['primary'],data[1]['secondary'],data[3])
 	export_selection_png(data[1]['selection_bg_colour'])
-	export_theme_config(data[0]['font_colour'],data[1]['selection_font_colour'],data[0]['label_colour'])
+	export_theme_config(data[2]['font_colour'],data[2]['selection_font_colour'],data[2]['label_colour'])
 	print(Fore.GREEN + f"~ Generated theme saved to {os.getcwd()+'/export/'}" + Style.RESET_ALL)

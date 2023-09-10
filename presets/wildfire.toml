@@ -1,6 +1,9 @@
+template='kewl'
+
 [background]
 primary = "#842304"
 secondary = "#A59508"
+menu_box_bg_colour="#fff"
 selection_bg_colour = "#E64B19"
 
 [theme]
