@@ -11,7 +11,7 @@ o    o         o               .oPYo.  .oPYo. o    o  .oPYo.
 8  `b8 8    8  8 8    . 8.     8    8  8    8 8    8  8    8 
 8   `8 `YooP'  8 `YooP' `Yooo' `YooP8  8    8 `YooP'  8oooP' 
 ..:::..:.....::..:.....::.....::....8 :..:::..:.....::......:
-:::::::: @1337kid ::::::::::::::::::8 ::::::: v1.2 ::::::::::'''
+:::::::: @1337kid ::::::::::::::::::8 ::::::: v1.2.2 ::::::::'''
 
 def menu():
 	return '''
@@ -34,8 +34,7 @@ Availabe Templates
 [1] Kewl
 [2] Noice
 
-Choice:
-'''
+Choice: '''
 
 def check_colour_code(colour):
     if not '#' in colour:colour='#'+colour
