@@ -15,17 +15,17 @@ for i in presets:
 print(Fore.GREEN +'\nAvailable Presets\n', table ,'\n[0] Custom\n'+Style.RESET_ALL,sep='')
 #=======
 choice=input(Fore.YELLOW+'Choice: '+Style.RESET_ALL)
-if choice not in '0123456':
+if choice not in '01234567':
     print(Fore.RED + 'Invalid choice')
     exit()
 if choice=='0':
     #======= Template Table
     table = PrettyTable(['No.','Templates'])
-    table.add_rows([[1,'Kewl'],[2,'Noice']])
+    table.add_rows([[1,'Kewl'],[2,'Noice'],[3,'TheMan']])
     print(Fore.GREEN , table , Style.RESET_ALL,sep='')
     template=input(Fore.YELLOW + '\nChoice: ' + Style.RESET_ALL)
     #=======
-    if template not in '12':
+    if template not in '123':
         print(Fore.RED + 'Invalid choice')
         exit()
     data=[]
@@ -38,17 +38,19 @@ if choice=='0':
     theme_text_conf={'font_colour':data[6],'selection_font_colour':data[5],'label_colour':data[7]}
     # ***
     if template=='1':
-        generate_theme(False,['kewl',background_conf,theme_text_conf])
-    elif template=='2':  # Getting extra colour values for noice template
+        generate_theme(False,['Kewl',background_conf,theme_text_conf])
+    else:  # Getting extra colour values for other templates
+        template_msgs={'2':['Noice',noice_template_extra],'3':['TheMan',theman_template_extra]}
+        msgs=template_msgs[template][1]
         extra={}
-        for i in noice_template_extra:
+        for i in msgs:
             temp=[]
-            for j in noice_template_extra[i]:
+            for j in msgs[i]:
                 colour=input(Fore.YELLOW + j + Fore.WHITE)
                 colour=check_colour_code(colour)
                 temp.append(colour)
             extra[i]=temp
-        generate_theme(False,['noice',background_conf,theme_text_conf,extra])
+        generate_theme(False,[template_msgs[template][0],background_conf,theme_text_conf,extra])
 else:
     generate_theme(list(presets[int(choice)-1].keys())[0])
 install_theme=input(Fore.YELLOW + 'Do you want to place the generated theme in /boot/grub/themes/ (Y/N)? ' + Fore.WHITE).lower()
