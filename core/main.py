@@ -11,7 +11,7 @@ o    o         o               .oPYo.  .oPYo. o    o  .oPYo.
 8  `b8 8    8  8 8    . 8.     8    8  8    8 8    8  8    8 
 8   `8 `YooP'  8 `YooP' `Yooo' `YooP8  8    8 `YooP'  8oooP' 
 ..:::..:.....::..:.....::.....::....8 :..:::..:.....::......:
-:::::::: @1337kid ::::::::::::::::::8 ::::::: v1.1.1 ::::::::'''
+:::::::: @1337kid ::::::::::::::::::8 ::::::: v1.2 ::::::::::'''
 
 def menu():
 	return '''
@@ -52,11 +52,12 @@ def get_preset(name):
 	else:
 		return [data['template'],data['background'],data['theme']]
 #=============================================================
-def generate_background(template,primary,secondary,extra=None):
+def generate_background(template,primary,secondary,menu_box_bg_colour,extra=None):
 	svg_temp=xmltodict.parse(open(f'template/{template}.svg').read())
 	if template=='kewl':   # For Kewl Template
 		svg_temp['svg']['defs']['linearGradient']['stop'][0]['@stop-color']=primary
 		svg_temp['svg']['defs']['linearGradient']['stop'][1]['@stop-color']=secondary
+		svg_temp['svg']['defs']['linearGradient']['stop'][1]['@stop-color']=menu_box_bg_colour
 	elif template=='noice':# For Noice Template
 		'''
 		'extra' argument format
@@ -76,7 +77,12 @@ def generate_background(template,primary,secondary,extra=None):
 		svg_temp['svg']['defs']['linearGradient'][3]['stop'][1]['@stop-color']=extra['circle'][1]
 		# Bottomleft triangle colour
 		svg_temp['svg']['path'][0]['@fill']=extra['triangle'][0]
-	open('temp.svg','w').write(xmltodict.unparse(svg_temp))
+	open('temp.svg','w').write(xmltodict.unparse(svg_temp,pretty=True))
+	if template=='noice':
+		data=open('temp.svg').readlines()
+		menu_box=data.pop(3)
+		data.insert(9,menu_box)
+		open('temp.svg','w').writelines(data)
 	cairosvg.svg2png(url='temp.svg', write_to=f'./export/background.png')
 	os.remove('temp.svg')
 
@@ -106,9 +112,9 @@ def generate_theme(name=True,custom=False):
 	if custom:
 		data=custom
 	if data[0]=='kewl':
-		generate_background('kewl',data[1]['primary'],data[1]['secondary'])
+		generate_background('kewl',data[1]['primary'],data[1]['secondary'],data[1]['menu_box_bg_colour'])
 	elif data[0]=='noice':
-		generate_background('noice',data[1]['primary'],data[1]['secondary'],data[3])
+		generate_background('noice',data[1]['primary'],data[1]['secondary'],data[1]['menu_box_bg_colour'],data[3])
 	export_selection_png(data[1]['selection_bg_colour'])
 	export_theme_config(data[2]['font_colour'],data[2]['selection_font_colour'],data[2]['label_colour'])
 	print(Fore.GREEN + f"~ Generated theme saved to {os.getcwd()+'/export/'}" + Style.RESET_ALL)

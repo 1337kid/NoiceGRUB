@@ -1,4 +1,4 @@
-input_msgs=['Primary gradient colour in hex: ','Secondary gradient colour in hex: ',
+input_msgs=['Primary gradient colour in hex: ','Secondary gradient colour in hex: ','Menu box background colour in hex: ',
 'GRUB selection background colour in hex: ','GRUB selection font colour: ',
 'GRUB font colour in hex: ','GRUB countdown colour in hex: ']
 
