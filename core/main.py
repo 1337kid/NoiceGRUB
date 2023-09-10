@@ -41,16 +41,16 @@ def generate_background(template,primary,secondary,extra=None):
 		svg_temp['svg']['defs']['linearGradient'][0]['stop'][0]['@stop-color']=primary
 		svg_temp['svg']['defs']['linearGradient'][0]['stop'][1]['@stop-color']=secondary
 		# Topright Polygon gradient
-		svg_temp['svg']['defs']['linearGradient'][1]['stop'][0]['@stop-color']=extra['polygon']['primary']
-		svg_temp['svg']['defs']['linearGradient'][1]['stop'][1]['@stop-color']=extra['polygon']['secondary']
+		svg_temp['svg']['defs']['linearGradient'][1]['stop'][0]['@stop-color']=extra['polygon'][0]
+		svg_temp['svg']['defs']['linearGradient'][1]['stop'][1]['@stop-color']=extra['polygon'][1]
 		# Bottomright ellipse gradient
-		svg_temp['svg']['defs']['linearGradient'][2]['stop'][0]['@stop-color']=extra['ellipse']['primary']
-		svg_temp['svg']['defs']['linearGradient'][2]['stop'][1]['@stop-color']=extra['ellipse']['secondary']
+		svg_temp['svg']['defs']['linearGradient'][2]['stop'][0]['@stop-color']=extra['ellipse'][0]
+		svg_temp['svg']['defs']['linearGradient'][2]['stop'][1]['@stop-color']=extra['ellipse'][1]
 		# Topleft quarter circle gradient
-		svg_temp['svg']['defs']['linearGradient'][3]['stop'][0]['@stop-color']=extra['circle']['primary']
-		svg_temp['svg']['defs']['linearGradient'][3]['stop'][1]['@stop-color']=extra['circle']['secondary']
+		svg_temp['svg']['defs']['linearGradient'][3]['stop'][0]['@stop-color']=extra['circle'][0]
+		svg_temp['svg']['defs']['linearGradient'][3]['stop'][1]['@stop-color']=extra['circle'][1]
 		# Bottomleft triangle colour
-		svg_temp['svg']['path'][0]['@fill']=extra['triangle']['bgcolour']
+		svg_temp['svg']['path'][0]['@fill']=extra['triangle']
 	open('temp.svg','w').write(xmltodict.unparse(svg_temp))
 	cairosvg.svg2png(url='temp.svg', write_to=f'./export/background.png')
 	os.remove('temp.svg')
