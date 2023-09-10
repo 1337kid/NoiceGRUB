@@ -33,26 +33,25 @@ def generate_background(template,primary,secondary,extra=None):
 		svg_temp['svg']['defs']['linearGradient']['stop'][0]['@stop-color']=primary
 		svg_temp['svg']['defs']['linearGradient']['stop'][1]['@stop-color']=secondary
 	elif template=='noice':# For Noice Template
-		# Background Gradient
 		'''
 		'extra' argument format
 		~~~~~~~~~~~~~~~~~~~~~
 		[{primary,secondary},{p,s},{p,s},triangle_colour]
 		'''
+		# Background Gradient
 		svg_temp['svg']['defs']['linearGradient'][0]['stop'][0]['@stop-color']=primary
 		svg_temp['svg']['defs']['linearGradient'][0]['stop'][1]['@stop-color']=secondary
 		# Topright Polygon gradient
-		svg_temp['svg']['defs']['linearGradient'][1]['stop'][0]['@stop-color']=extra[0][0]
-		svg_temp['svg']['defs']['linearGradient'][1]['stop'][1]['@stop-color']=extra[0][1]
+		svg_temp['svg']['defs']['linearGradient'][1]['stop'][0]['@stop-color']=extra['polygon']['primary']
+		svg_temp['svg']['defs']['linearGradient'][1]['stop'][1]['@stop-color']=extra['polygon']['secondary']
 		# Bottomright ellipse gradient
-		svg_temp['svg']['defs']['linearGradient'][2]['stop'][0]['@stop-color']=extra[1][0]
-		svg_temp['svg']['defs']['linearGradient'][2]['stop'][1]['@stop-color']=extra[1][1]
+		svg_temp['svg']['defs']['linearGradient'][2]['stop'][0]['@stop-color']=extra['ellipse']['primary']
+		svg_temp['svg']['defs']['linearGradient'][2]['stop'][1]['@stop-color']=extra['ellipse']['secondary']
 		# Topleft quarter circle gradient
-		svg_temp['svg']['defs']['linearGradient'][3]['stop'][0]['@stop-color']=extra[2][0]
-		svg_temp['svg']['defs']['linearGradient'][3]['stop'][1]['@stop-color']=extra[2][1]
+		svg_temp['svg']['defs']['linearGradient'][3]['stop'][0]['@stop-color']=extra['circle']['primary']
+		svg_temp['svg']['defs']['linearGradient'][3]['stop'][1]['@stop-color']=extra['circle']['secondary']
 		# Bottomleft triangle colour
-		svg_temp['svg']['path'][0]['@fill']=extra[3]
-
+		svg_temp['svg']['path'][0]['@fill']=extra['triangle']['bgcolour']
 	open('temp.svg','w').write(xmltodict.unparse(svg_temp))
 	cairosvg.svg2png(url='temp.svg', write_to=f'./export/background.png')
 	os.remove('temp.svg')
@@ -83,7 +82,7 @@ def generate_theme(name=True,custom=False):
 		if name=='noice':
 			cairosvg.svg2png(url='template/noice.svg', write_to='./export/background.png')
 		else:
-			generate_background(data[0]['primary'],data[0]['secondary'])
+			generate_background('kewl',data[0]['primary'],data[0]['secondary'])
 	if custom:
 		data=custom
 		generate_background(data[0]['primary'],data[0]['secondary'])
