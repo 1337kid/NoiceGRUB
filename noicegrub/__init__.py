@@ -8,6 +8,7 @@ def get_preset(name):
 def preset_table():
     preset_dict={}
     files=os.listdir('presets')
+    files.sort()
     table = PrettyTable(['No.','Preset', 'Template'])
     presets=[{i.split('.')[0]:toml.load(open(f'presets/{i}'))['template']} for i in files]
     for i in presets:
@@ -24,4 +25,4 @@ o    o         o               .oPYo.  .oPYo. o    o  .oPYo.
 8  `b8 8    8  8 8    . 8.     8    8  8    8 8    8  8    8 
 8   `8 `YooP'  8 `YooP' `Yooo' `YooP8  8    8 `YooP'  8oooP' 
 ..:::..:.....::..:.....::.....::....8 :..:::..:.....::......:
-:::::::: @1337kid ::::::::::::::::::8 ::::::: v1.5.1 ::::::::'''
+:::::::: @1337kid ::::::::::::::::::8 ::::::: v1.6 ::::::::::'''

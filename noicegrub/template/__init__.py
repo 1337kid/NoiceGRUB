@@ -25,8 +25,7 @@ class NgCommonProps():
             self.svg_temp['svg']['defs']['linearGradient'][0]['stop'][1]['@stop-color']=self.common_props['secondary']
 
     def export_theme(self):
-        if not os.path.exists('export'):
-            os.mkdir('export')
+        if not os.path.exists('export'): os.mkdir('export')
         #============ background.png
         open('temp.svg','w').write(xmltodict.unparse(self.svg_temp,pretty=True))
         '''
