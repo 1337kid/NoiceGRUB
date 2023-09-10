@@ -1,0 +1,17 @@
+template='Nico'
+
+[background]
+primary = "#DD2BCC"
+secondary = "#6211A1"
+header_font_colour = "#000"
+footer_font_colour = "#000"
+selection_bg_colour = "#A349DA"
+
+[theme]
+font_colour = "#000"
+selection_font_colour = "#FFF"
+label_colour = "#FFF"
+
+[extra]
+menubox=['#DBA9F2']
+header_text_gradient=['#B234ED','#380C82']

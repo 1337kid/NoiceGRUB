@@ -1,7 +1,7 @@
 import os
 import xmltodict
 import cairosvg
-from noicegrub.templateconf import header_footer_placement,menu_box_placement
+from noicegrub.templateconf import header_footer_placement,item_placement
 
 class NgCommonProps():
     def __init__(self,preset):
@@ -14,12 +14,14 @@ class NgCommonProps():
     def set_common_props(self):
         self.svg_temp=xmltodict.parse(open(f'template/{self.template}.svg').read())
         #==== header & footer colours
-        self.svg_temp['svg']['path'][header_footer_placement[self.template][0]]['@fill']=self.common_props['header_font_colour']
-        self.svg_temp['svg']['path'][header_footer_placement[self.template][1]]['@fill']=self.common_props['footer_font_colour']
+        try:
+            self.svg_temp['svg']['path'][header_footer_placement[self.template][0]]['@fill']=self.common_props['header_font_colour']
+            self.svg_temp['svg']['path'][header_footer_placement[self.template][1]]['@fill']=self.common_props['footer_font_colour']
+        except: pass
         #==== background gradient
         if self.template == 'Kewl':
             self.svg_temp['svg']['defs']['linearGradient']['stop'][0]['@stop-color']=self.common_props['primary']
-            self.svg_temp['svg']['defs']['linearGradient']['stop'][1]['@stop-color']=self.common_props['secondary']
+            self.svg_temp['svg']['defs']['linearGradient']['stop'][1]['@stop-color']=self.common_props['secondary']          
         else:
             self.svg_temp['svg']['defs']['linearGradient'][0]['stop'][0]['@stop-color']=self.common_props['primary']
             self.svg_temp['svg']['defs']['linearGradient'][0]['stop'][1]['@stop-color']=self.common_props['secondary']
@@ -32,9 +34,9 @@ class NgCommonProps():
         When unparsing, xmltodict changes the order of elements.
         The below code is to keep <rect> tag of menubox in its place
         '''
-        data=open('temp.svg').readlines()
-        menu_box=data.pop(menu_box_placement[self.template][0]) 
-        data.insert(menu_box_placement[self.template][1],menu_box)
+        data=open('temp.svg','r').readlines()
+        menu_box=data.pop(item_placement[self.template][0]) 
+        data.insert(item_placement[self.template][1],menu_box)
         open('temp.svg','w').writelines(data)
 
         png=cairosvg.svg2png(url='temp.svg')
