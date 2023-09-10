@@ -63,7 +63,7 @@ def generate_background(template,primary,secondary,extra=None):
 		# Background Gradient
 		svg_temp['svg']['defs']['linearGradient'][0]['stop'][0]['@stop-color']=primary
 		svg_temp['svg']['defs']['linearGradient'][0]['stop'][1]['@stop-color']=secondary
-		svg_temp['svg']['rect'][1]=extra['menuboxbg'][0]
+		svg_temp['svg']['rect'][1]['@fill']=extra['menuboxbg'][0]
 		# Topright Polygon gradient
 		svg_temp['svg']['defs']['linearGradient'][1]['stop'][0]['@stop-color']=extra['polygon'][0]
 		svg_temp['svg']['defs']['linearGradient'][1]['stop'][1]['@stop-color']=extra['polygon'][1]
@@ -75,14 +75,14 @@ def generate_background(template,primary,secondary,extra=None):
 		svg_temp['svg']['defs']['linearGradient'][3]['stop'][1]['@stop-color']=extra['circle'][1]
 		# Bottomleft triangle colour
 		svg_temp['svg']['path'][0]['@fill']=extra['triangle'][0]
-	open('temp.svg','w').write(xmltodict.unparse(svg_temp,pretty=True))
+	open('temp1.svg','w').write(xmltodict.unparse(svg_temp,pretty=True))
 	if template=='noice':
-		data=open('temp.svg').readlines()
+		data=open('temp1.svg').readlines()
 		menu_box=data.pop(3)
 		data.insert(9,menu_box)
-		open('temp.svg','w').writelines(data)
-	cairosvg.svg2png(url='temp.svg', write_to=f'./export/background.png')
-	os.remove('temp.svg')
+		open('temp1.svg','w').writelines(data)
+	cairosvg.svg2png(url='temp1.svg', write_to=f'./export/background.png')
+	#os.remove('temp.svg')
 
 def export_selection_png(primary):
 	filenames=['select_c','select_e','select_w']
