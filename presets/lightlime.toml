@@ -1,0 +1,9 @@
+[background]
+primary = "#85FFBD"
+secondary = "#FFFB7D"
+selection_bg_colour = "#A7ED9A"
+
+[theme]
+font_colour = "#fff"
+selection_font_colour = "#000"
+label_colour = "#fff"

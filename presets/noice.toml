@@ -1,0 +1,7 @@
+[background]
+selection_bg_colour = "#D4B5FB"
+
+[theme]
+font_colour = "#000"
+selection_font_colour = "#d0c4f5"
+label_colour = "#d0c4f5"
