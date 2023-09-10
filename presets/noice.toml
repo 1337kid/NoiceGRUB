@@ -3,7 +3,6 @@ template='noice'
 [background]
 primary="#806CFB"
 secondary="#3A7385"
-menu_box_bg_colour="#87B9C9"
 selection_bg_colour = "#D4B5FB"
 
 [theme]
@@ -16,3 +15,4 @@ polygon=["#A68AD2","#79B6C3"]
 ellipse=["#46CDF8","#825EE9"]
 circle=["#7D32F9","#4D8EF0"]
 triangle=["#5DDDF9"]
+menuboxbg=["#87B9C9"]

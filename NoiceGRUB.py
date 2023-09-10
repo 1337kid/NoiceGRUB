@@ -21,8 +21,8 @@ if choice=='0':
         colour=check_colour_code(colour)
         data.append(colour)
     # ***
-    background_conf={'primary':data[0],'secondary':data[1],'menu_box_bg_colour':data[2],'selection_bg_colour':data[3]}
-    theme_text_conf={'font_colour':data[5],'selection_font_colour':data[4],'label_colour':data[6]}
+    background_conf={'primary':data[0],'secondary':data[1],'selection_bg_colour':data[2]}
+    theme_text_conf={'font_colour':data[4],'selection_font_colour':data[3],'label_colour':data[5]}
     # ***
     if template=='1':
         generate_theme(False,['kewl',background_conf,theme_text_conf])

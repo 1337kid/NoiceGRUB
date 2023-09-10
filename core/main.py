@@ -50,7 +50,7 @@ def get_preset(name):
 	return [data[i] for i in data]
 
 #=============================================================
-def generate_background(template,primary,secondary,menu_box_bg_colour,extra=None):
+def generate_background(template,primary,secondary,extra=None):
 	svg_temp=xmltodict.parse(open(f'template/{template}.svg').read())
 	if template=='kewl':   # For Kewl Template
 		svg_temp['svg']['defs']['linearGradient']['stop'][0]['@stop-color']=primary
@@ -63,7 +63,7 @@ def generate_background(template,primary,secondary,menu_box_bg_colour,extra=None
 		# Background Gradient
 		svg_temp['svg']['defs']['linearGradient'][0]['stop'][0]['@stop-color']=primary
 		svg_temp['svg']['defs']['linearGradient'][0]['stop'][1]['@stop-color']=secondary
-		svg_temp['svg']['rect'][1]=menu_box_bg_colour
+		svg_temp['svg']['rect'][1]=extra['menuboxbg'][0]
 		# Topright Polygon gradient
 		svg_temp['svg']['defs']['linearGradient'][1]['stop'][0]['@stop-color']=extra['polygon'][0]
 		svg_temp['svg']['defs']['linearGradient'][1]['stop'][1]['@stop-color']=extra['polygon'][1]
@@ -110,9 +110,9 @@ def generate_theme(name=True,custom=False):
 	if custom:
 		data=custom
 	if data[0]=='kewl':
-		generate_background('kewl',data[1]['primary'],data[1]['secondary'],data[1]['menu_box_bg_colour'])
+		generate_background('kewl',data[1]['primary'],data[1]['secondary'])
 	elif data[0]=='noice':
-		generate_background('noice',data[1]['primary'],data[1]['secondary'],data[1]['menu_box_bg_colour'],data[3])
+		generate_background('noice',data[1]['primary'],data[1]['secondary'],data[3])
 	export_selection_png(data[1]['selection_bg_colour'])
 	export_theme_config(data[2]['font_colour'],data[2]['selection_font_colour'],data[2]['label_colour'])
 	print(Fore.GREEN + f"~ Generated theme saved to {os.getcwd()+'/export/'}" + Style.RESET_ALL)
