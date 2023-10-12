@@ -6,7 +6,7 @@ cssselect2==0.7.0
 defusedxml==0.7.1
 markdown-it-py==3.0.0
 mdurl==0.1.2
-Pillow==10.0.0
+Pillow==10.0.1
 pycparser==2.21
 Pygments==2.16.1
 rich==13.5.2
