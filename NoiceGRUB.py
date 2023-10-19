@@ -9,7 +9,7 @@ from rich.console import Console
 from rich.markdown import Markdown
 from rich.prompt import IntPrompt,Confirm
 from rich.panel import Panel
-import subprocess,os
+import os
 
 console = Console()
 
@@ -33,6 +33,6 @@ elif preset[0]=='Nico': NgNicoTemplate(preset).export_theme()
 if Confirm.ask('[yellow bold]Do you want to place the generated theme in /boot/grub/themes/[/yellow bold]'):
     richprint('\n[green bold]Executing scripts/install.sh ... [/green bold]')
     os.system('chmod +x ./scripts/install.sh')
-    subprocess.run(['sudo','./scripts/install.sh'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+    os.system('sudo ./scripts/install.sh')
     richprint('[green bold]Done')
 richprint('[green bold]Thankyou for using NoiceGRUB[/green bold]')
