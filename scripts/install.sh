@@ -44,7 +44,12 @@ echo "GRUB_THEME=$THEMES_PATH/theme.txt" >> /etc/default/grub
 #
 printf "\033[92m[+] \033[94mUpdating GRUB config\n\033[92m"
 if [[ $(which dnf) != "" ]];then
-    grub2-mkconfig -o /boot/grub2/grub2.cfg
+    fedora_version=$(cat /etc/fedora-release | awk '{print $3}')
+    if [[ fedora_version -gt 34 ]];then
+        grub2-mkconfig -o /boot/grub2/grub.cfg
+    else
+        grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+    fi
 else
     update-grub
 fi
