@@ -57,7 +57,8 @@ fi
 
 get_path
 THEME_PATH=$GRUB_PATH"themes/noicegrub"
-read -p "\033[1m\033[93mDo you want to place the generated theme in $GRUB_PATH [y/n] " inst
+printf "\033[1m\033[93m"
+read -p "Do you want to place the generated theme in $GRUB_PATH [y/n] " inst
 case $inst in
     [Yy]* ) install;;
     * ) exit;;
