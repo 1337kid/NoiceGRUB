@@ -23,7 +23,7 @@ cat <<EOF
 |   | . | |  _| -_| . |  _| | | . | | | . | . |  _|
 |_|_|___|_|___|___|_  |_| |___|___|___|  _|___|_|  
                   |___|               |_|          
-          NoiceGRUB Theme Installer v1.3
+          NoiceGRUB Theme Installer
 
 EOF
 
@@ -39,5 +39,11 @@ printf "\033[92m[+] \033[94mCopying files\n"
 cp ./export/* $THEMES_PATH
 sed -i 's/.*GRUB_THEME=.*//' /etc/default/grub
 echo "GRUB_THEME=$THEMES_PATH/theme.txt" >> /etc/default/grub
-printf "\033[92m[+] \033[94mRunning update-grub\n\033[92m"
-update-grub
+#
+#========= GRUB update
+#
+printf "\033[92m[+] \033[94mUpdating GRUB config\n\033[92m"
+if [[ $(which dnf) != "" ]];then
+    grub2-mkconfig -o /boot/grub2/grub2.cfg
+else
+    update-grub
