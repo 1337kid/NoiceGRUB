@@ -30,9 +30,7 @@ elif preset[0]=='TheMan': NgTheManTemplate(preset).export_theme()
 elif preset[0]=='Mountains': NgMountainsTemplate(preset).export_theme()
 elif preset[0]=='Nico': NgNicoTemplate(preset).export_theme()
 
-if Confirm.ask('[yellow bold]Do you want to place the generated theme in /boot/grub/themes/[/yellow bold]'):
-    richprint('\n[green bold]Executing scripts/install.sh ... [/green bold]')
-    os.system('chmod +x ./scripts/install.sh')
-    os.system('sudo ./scripts/install.sh')
-    richprint('[green bold]Done')
+richprint('\n[green bold]Executing scripts/install.sh ... [/green bold]')
+os.system('chmod +x ./scripts/install.sh')
+os.system('sudo ./scripts/install.sh')
 richprint('[green bold]Thankyou for using NoiceGRUB[/green bold]')
