@@ -47,3 +47,4 @@ if [[ $(which dnf) != "" ]];then
     grub2-mkconfig -o /boot/grub2/grub2.cfg
 else
     update-grub
+fi
