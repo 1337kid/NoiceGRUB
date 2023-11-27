@@ -1,19 +1,52 @@
 #!/bin/bash
 
+GRUB_PATH=''
 THEMES_PATH=''
 
 #==========================
+# get_path() {
+#     if [[ -d "/boot/grub2" ]]; then
+#     PATH='/boot/grub2/themes/noicegrub'
+#     elif [[ -d "/boot/grub" ]]; then
+#     PATH='/boot/grub/themes/noicegrub'
+#     elif [[ -d "/boot/efi/EFI/fedora" ]]; then
+#     PATH='/boot/efi/EFI/fedora/themes/noicegrub'
+#     fi
+# }
+
 get_path() {
     if [[ -d "/boot/grub2" ]]; then
-    THEMES_PATH='/boot/grub2/themes/noicegrub'
+    GRUB_PATH='/boot/grub2/'
     elif [[ -d "/boot/grub" ]]; then
-    THEMES_PATH='/boot/grub/themes/noicegrub'
+    GRUB_PATH='/boot/grub/'
     elif [[ -d "/boot/efi/EFI/fedora" ]]; then
-    THEMES_PATH='/boot/efi/EFI/fedora/themes/noicegrub'
+    GRUB_PATH='/boot/efi/EFI/fedora/'
     fi
 }
 
-get_path
+
+install() {
+    printf "\033[92m[+] \033[94mCreating $THEMES_PATH\n"
+    mkdir -p $THEMES_PATH
+    printf "\033[92m[+] \033[94mCopying files\n"
+    cp ./export/* $THEMES_PATH
+    sed -i 's/.*GRUB_THEME=.*//' /etc/default/grub
+    echo "GRUB_THEME=$THEMES_PATH/theme.txt" >> /etc/default/grub
+    #
+    #========= GRUB update
+    #
+    printf "\033[92m[+] \033[94mUpdating GRUB config\n\033[92m"
+    if [[ $(which dnf) != "" ]];then
+        fedora_version=$(cat /etc/fedora-release | awk '{print $3}')
+        if [[ fedora_version -gt 34 ]];then
+            grub2-mkconfig -o /boot/grub2/grub.cfg
+        else
+            grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+        fi
+    else
+        update-grub
+    fi
+}
 #=========================
 
 printf "\033[94m\033[1m"
@@ -33,23 +66,10 @@ then
     exit
 fi
 
-printf "\033[92m[+] \033[94mCreating $THEMES_PATH\n"
-mkdir -p $THEMES_PATH
-printf "\033[92m[+] \033[94mCopying files\n"
-cp ./export/* $THEMES_PATH
-sed -i 's/.*GRUB_THEME=.*//' /etc/default/grub
-echo "GRUB_THEME=$THEMES_PATH/theme.txt" >> /etc/default/grub
-#
-#========= GRUB update
-#
-printf "\033[92m[+] \033[94mUpdating GRUB config\n\033[92m"
-if [[ $(which dnf) != "" ]];then
-    fedora_version=$(cat /etc/fedora-release | awk '{print $3}')
-    if [[ fedora_version -gt 34 ]];then
-        grub2-mkconfig -o /boot/grub2/grub.cfg
-    else
-        grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
-    fi
-else
-    update-grub
-fi
+get_path
+THEMES_PATH=$GRUB_PATH"themes/noicegrub"
+read -p "Do you want to place the generated theme in $GRUB_PATH" inst
+case $inst in
+    [Yy]* ) install;;
+    * ) exit;;
+esac
