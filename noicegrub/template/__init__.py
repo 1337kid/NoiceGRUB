@@ -43,6 +43,7 @@ class NgCommonProps():
         open('./export/background.png','wb').write(png)
         os.remove('temp.svg')
         #============ menu box selection background colour
+        selection_height = self.common_props['selection_height'] #test <<----
         filenames=['select_c','select_e','select_w']
         for i in filenames:
             svg_temp=xmltodict.parse(open(f'template/{i}.svg').read())

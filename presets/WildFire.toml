@@ -6,6 +6,7 @@ secondary = "#A59508"
 header_font_colour = "#fff"
 footer_font_colour = "#fff"
 selection_bg_colour = "#E64B19"
+selection_height = "30"
 
 [theme]
 font_colour = "#fff"
