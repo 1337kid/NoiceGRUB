@@ -6,7 +6,8 @@ secondary = "#80D0C7"
 header_font_colour = "#fff"
 footer_font_colour = "#fff"
 selection_bg_colour = "#61BAEA"
-selection_height = "30"
+selection_font = "32"
+font_family = "InterRegular.ttf"
 
 [theme]
 font_colour = "#fff"

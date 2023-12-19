@@ -17,7 +17,7 @@ terminal-border: "0"
   item_color = {font_colour}
   selected_item_color = {selection_font_colour}
   selected_item_pixmap_style = "select_*.png"
-  item_height = 30
+  item_height = {selection_height}
   item_padding = 2
   item_spacing = 5
 }
