@@ -1,7 +1,8 @@
-import os
+import os,shutil
 import xmltodict
 import cairosvg
-from noicegrub.templateconf import header_footer_placement,item_placement
+from noicegrub.templateconf import header_footer_placement,item_placement,calc_selection_scale
+from noicegrub import gen_font_name
 
 class NgCommonProps():
     def __init__(self,preset):
@@ -27,8 +28,10 @@ class NgCommonProps():
             self.svg_temp['svg']['defs']['linearGradient'][0]['stop'][1]['@stop-color']=self.common_props['secondary']
 
     def export_theme(self):
-        if not os.path.exists('export'): os.mkdir('export')
+        if os.path.exists('export'): shutil.rmtree('export')
+        os.mkdir('export')
         #============ background.png
+
         open('temp.svg','w').write(xmltodict.unparse(self.svg_temp,pretty=True))
         '''
         When unparsing, xmltodict changes the order of elements.
@@ -42,18 +45,25 @@ class NgCommonProps():
         png=cairosvg.svg2png(url='temp.svg')
         open('./export/background.png','wb').write(png)
         os.remove('temp.svg')
-        #============ menu box selection background colour
-        filenames=['select_c','select_e','select_w']
+
+        #============ menu box selection background colour & font
+
+        height,new_scale = calc_selection_scale(self.common_props['selection_font'])
+        filenames = ['select_c','select_e','select_w']
         for i in filenames:
-            svg_temp=xmltodict.parse(open(f'template/{i}.svg').read())
+            svg_temp = xmltodict.parse(open(f'template/{i}.svg').read())
             svg_temp['svg']['path']['@fill']=self.common_props['selection_bg_colour']
             open('temp.svg','w').write(xmltodict.unparse(svg_temp))
-            cairosvg.svg2png(url='temp.svg', write_to=f'./export/{i}.png')
+            cairosvg.svg2png(url='temp.svg', write_to=f'./export/{i}.png',scale=new_scale)
             os.remove('temp.svg')
+        shutil.copy(f"fonts/{self.common_props['font_family']}", gen_font_name(self.common_props['font_family'],self.common_props['selection_font']))
+
         #============ theme.txt config file
+
         font_colour,selection_font_colour,label_colour = self.theme_txt_conf['font_colour'],self.theme_txt_conf['selection_font_colour'],self.theme_txt_conf['label_colour']
-        config=open('template/theme.txt').read()
-        config=config.replace('{font_colour}',f'"{font_colour}"')
-        config=config.replace('{selection_font_colour}',f'"{selection_font_colour}"')
-        config=config.replace('{label_colour}',f'"{label_colour}"')
+        config = open('template/theme.txt').read()
+        config = config.replace('{font_colour}',f'"{font_colour}"')
+        config = config.replace('{selection_font_colour}',f'"{selection_font_colour}"')
+        config = config.replace('{label_colour}',f'"{label_colour}"')
+        config = config.replace('{selection_height}',f'{height}')
         open('./export/theme.txt','w').write(config)
