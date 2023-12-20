@@ -1,5 +1,5 @@
 # NoiceGRUB
-#### NoiceGRUB is a collection of linear gradient based GRUB2 themes that can be customised. By default NoiceGRUB comes with 5 templates and 10 presets.
+#### NoiceGRUB is a collection of linear gradient based GRUB2 themes that can be customised. By default NoiceGRUB comes with 4 templates and 8 presets.
 # Contents
 * [**Installation**][1]
 * [**Presets**][2]
@@ -18,8 +18,7 @@ python3 NoiceGRUB.py
 ```
 ## [Presets][2]
 ### [Create Your Own Preset][3]
-NoiceGRUB preset files have the syntax of TOML and ends with `.toml` extension. Your own preset shall be placed in `presets` folder. It will be shown in the preset menu when you execute `NoiceGRUB.py` <br/><br/>
-Fonts are placed in `fonts` folder. User defined fonts should be place in this folder to be recognised by NoiceGRUB
+NoiceGRUB preset files have the syntax of TOML and ends with `.toml` extension. Your own preset shall be placed in `presets` folder. It will be shown in the preset menu when you execute `NoiceGRUB.py`
 #### File format
 ```toml
 template='template name here'
@@ -31,8 +30,6 @@ secondary="secondary gradient colour"
 header_font_colour = "header font colour or 'BOOTMENU' text colour"
 footer_font_colour = "footer font colour or GRUB keymap text colour"
 selection_bg_colour = "backgound colour of selection highlighter"
-selection_font = "font size in pixels (integer)"
-font_family = ".ttf or .otf font filename"
 
 # This section defines theme.txt file and is mandatory too
 [theme]

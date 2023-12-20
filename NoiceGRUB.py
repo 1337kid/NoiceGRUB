@@ -27,10 +27,6 @@ print()
 preset = get_preset(preset_dict[choice])
 table = preset_info_table(preset)
 console.print(table)
-font_file = preset[1]['font_family']
-if not os.path.exists(f'./fonts/{font_file}'):
-    richprint(f'[red bold][Error] {font_file} is not present in ./fonts/ [/red bold]')
-    exit()
 choice = Confirm.ask("[yellow bold]Would you like to customise the font ?[/yellow bold]")
 if choice:
     table,fonts = font_table()
@@ -46,7 +42,7 @@ elif preset[0]=='TheMan': NgTheManTemplate(preset).export_theme()
 elif preset[0]=='Mountains': NgMountainsTemplate(preset).export_theme()
 elif preset[0]=='Nico': NgNicoTemplate(preset).export_theme()
 
-richprint('\n[cyan bold]Generated theme has been placed in ./export/ [/cyan bold]')
+richprint(f'\n[cyan bold]Generated theme has been placed in {os.getcwd()}/export/ [/cyan bold]')
 choice = Confirm.ask("[yellow bold]Would you like to install the theme ?[/yellow bold]")
 if choice:
     richprint('\n[green bold]Executing scripts/install.sh ... [/green bold]')
