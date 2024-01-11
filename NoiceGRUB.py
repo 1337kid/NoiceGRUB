@@ -11,17 +11,24 @@ from rich.prompt import IntPrompt,Confirm
 from rich.panel import Panel
 import os
 
+init()
 console = Console()
 
 richprint(Panel("[cyan bold]" + banner + "[/cyan bold]",width=65,border_style="cyan"))
 table,preset_dict = preset_table()
 console.print(table)
 richprint("[cyan bold][ 0 ][/cyan bold] [green bold]Instructions for creating a preset[/green bold]")
+richprint("[cyan bold][ 99 ][/cyan bold] [green bold]Remove installed NoiceGRUB theme[/green bold]")
 
-choice = IntPrompt.ask("[yellow]Choice[/yellow]",choices=[str(i) for i in range(len(preset_dict)+1)])
+choice = IntPrompt.ask("[yellow]Choice[/yellow]",choices=gen_choices(preset_dict))
 if choice == 0:
     console.print(Markdown(open('noicegrub/createpreset.md').read()))
     exit()
+elif choice == 99:
+    richprint('\n[green bold]Executing scripts/remove.sh ... [/green bold]')
+    os.system('sudo ./scripts/remove.sh')
+    richprint('[green bold]Done[/green bold]')
+    exit()    
 
 print()
 preset = get_preset(preset_dict[choice])
@@ -50,6 +57,5 @@ richprint('\n[cyan bold]Generated theme has been placed in ./export/ [/cyan bold
 choice = Confirm.ask("[yellow bold]Would you like to install the theme ?[/yellow bold]")
 if choice:
     richprint('\n[green bold]Executing scripts/install.sh ... [/green bold]')
-    os.system('chmod +x ./scripts/install.sh')
     os.system('sudo ./scripts/install.sh')
 richprint('[green bold]Done[/green bold]')
