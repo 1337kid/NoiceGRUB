@@ -5,6 +5,15 @@ def get_preset(name):
 	data=toml.load(open(f'./presets/{name}.toml'))
 	return [data[i] for i in data]
 
+def gen_choices(presetDict):
+    ch_list = [str(i) for i in range(len(presetDict)+1)]
+    ch_list.append('99')
+    return ch_list
+
+def init():
+    os.system('chmod +x ./scripts/functions.sh')
+    os.system('chmod +x ./scripts/install.sh')
+    os.system('chmod +x ./scripts/remove.sh')
 
 #================= rich tables
 def preset_table():
@@ -56,4 +65,4 @@ o    o         o               .oPYo.  .oPYo. o    o  .oPYo.
 8  `b8 8    8  8 8    . 8.     8    8  8    8 8    8  8    8 
 8   `8 `YooP'  8 `YooP' `Yooo' `YooP8  8    8 `YooP'  8oooP' 
 ..:::..:.....::..:.....::.....::....8 :..:::..:.....::......:
-:::::::: @1337kid ::::::::::::::::::8 :::::::: v2.0 :::::::::\n'''
+:::::::: @1337kid ::::::::::::::::::8 :::::::: v2.0.1 :::::::\n'''

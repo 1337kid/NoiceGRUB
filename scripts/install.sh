@@ -1,17 +1,9 @@
 #!/bin/bash
 
 GRUB_PATH=''
-THEMES_PATH=''
+THEME_PATH=''
 
-get_path() {
-    if [[ -d "/boot/grub2" ]]; then
-    GRUB_PATH='/boot/grub2/'
-    elif [[ -d "/boot/grub" ]]; then
-    GRUB_PATH='/boot/grub/'
-    elif [[ -d "/boot/efi/EFI/fedora" ]]; then
-    GRUB_PATH='/boot/efi/EFI/fedora/'
-    fi
-}
+source ./scripts/functions.sh
 
 makefont() {
     font=$(ls ./export | grep -E '.ttf|.otf')
@@ -42,16 +34,7 @@ install() {
     #========= GRUB update
     #
     printf "\033[92m[+] \033[94mUpdating GRUB config\n\033[92m"
-    if [[ $(which dnf) != "" ]];then
-        fedora_version=$(cat /etc/fedora-release | awk '{print $3}')
-        if [[ fedora_version -gt 34 ]];then
-            grub2-mkconfig -o /boot/grub2/grub.cfg
-        else
-            grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
-        fi
-    else
-        update-grub
-    fi
+    update_grub_func
 }
 #=========================
 
@@ -66,14 +49,9 @@ cat <<EOF
 
 EOF
 
-if [[ $(id -u) != "0" ]]
-then
-    printf "\033[91mCurrent user does not have root perms\n"
-    exit
-fi
-
+check_uid
 get_path
 THEME_PATH=$GRUB_PATH"themes/noicegrub"
 printf "\033[1m\033[93m"
-echo "Generated theme will be placed in $THEMES_PATH"
+echo "Generated theme will be placed in $THEME_PATH"
 install
