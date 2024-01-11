@@ -2,15 +2,10 @@
 
 GRUB_PATH=''
 
-if [[ $(id -u) != "0" ]]
-then
-    printf "\033[91mCurrent user does not have root perms\n"
-    exit
-fi
-
 source ./scripts/functions.sh
 
 printf "\033[1m"
+check_uid
 get_path
 THEME_PATH=$GRUB_PATH"themes/noicegrub"
 printf "\033[92m[+] \033[94mRemoving NoiceGRUB theme\n\033[92m"

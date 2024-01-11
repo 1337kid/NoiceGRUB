@@ -1,5 +1,13 @@
 #!/bin/bash
 
+check_uid() {
+    if [[ $(id -u) != "0" ]]
+    then
+        printf "\033[91mCurrent user does not have root perms\n"
+        exit
+    fi
+}
+
 update_grub_func() {
     if [[ $(which dnf) != "" ]];then
         fedora_version=$(cat /etc/fedora-release | awk '{print $3}')

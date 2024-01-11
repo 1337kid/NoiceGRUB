@@ -49,12 +49,7 @@ cat <<EOF
 
 EOF
 
-if [[ $(id -u) != "0" ]]
-then
-    printf "\033[91mCurrent user does not have root perms\n"
-    exit
-fi
-
+check_uid
 get_path
 THEME_PATH=$GRUB_PATH"themes/noicegrub"
 printf "\033[1m\033[93m"
