@@ -9,7 +9,7 @@ makefont() {
     font=$(ls ./export | grep -E '.ttf|.otf')
     size=$(echo $font | awk -F '.' '{print $2}')
     name="$(echo $font | awk -F '.' '{print $1}').pf2"
-    if [[ $(which grub2-mkfont) != "" ]];then
+    if [[ $(which grub2-mkfont 2>/dev/null) != "" ]];then
         grub2-mkfont -s $size -o $THEME_PATH/$name ./export/$font 2>/dev/null
     else
         grub-mkfont -s $size -o $THEME_PATH/$name ./export/$font 2>/dev/null
@@ -25,6 +25,10 @@ install() {
     cp ./export/* $THEME_PATH
 
     #======== /etc/default/grub config file 
+    if [[ $(grep "noicegrub" /etc/default/grub) == "" ]];then
+        printf "\033[92m[+] \033[94mBacking up GRUB config (/etc/default/grub.bak)\n"
+        mv /etc/default/grub /etc/default/grub.bak
+    fi
     sed -i 's/.*GRUB_THEME=.*//' /etc/default/grub
     echo "GRUB_THEME=$THEME_PATH/theme.txt" >> /etc/default/grub #theme location
     font_name=$(makefont)
