@@ -9,13 +9,15 @@ check_uid() {
 }
 
 update_grub_func() {
-    if [[ $(which dnf) != "" ]];then
+    if [[ $(which dnf 2>/dev/null) != "" ]];then
         fedora_version=$(cat /etc/fedora-release | awk '{print $3}')
         if [[ fedora_version -gt 34 ]];then
             grub2-mkconfig -o /boot/grub2/grub.cfg
         else
             grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
         fi
+    elif [[ $(which grub-mkconfig 2>/dev/null) != "" ]];then
+        grub-mkconfig -o /boot/grub/grub.cfg
     else
         update-grub
     fi
