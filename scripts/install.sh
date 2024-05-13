@@ -27,7 +27,7 @@ install() {
     #======== /etc/default/grub config file 
     if [[ $(grep "noicegrub" /etc/default/grub) == "" ]];then
         printf "\033[92m[+] \033[94mBacking up GRUB config (/etc/default/grub.bak)\n"
-        mv /etc/default/grub /etc/default/grub.bak
+        cp /etc/default/grub /etc/default/grub.bak
     fi
     sed -i 's/.*GRUB_THEME=.*//' /etc/default/grub
     echo "GRUB_THEME=$THEME_PATH/theme.txt" >> /etc/default/grub #theme location
@@ -54,6 +54,10 @@ cat <<EOF
 EOF
 
 check_uid
+if [[ ! -f /etc/default/grub ]]; then
+    printf "\033[91mError: /etc/default/grub file not found. Make sure GRUB is installed.\n"
+    exit
+fi
 get_path
 THEME_PATH=$GRUB_PATH"themes/noicegrub"
 printf "\033[1m\033[93m"
