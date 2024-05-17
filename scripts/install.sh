@@ -36,7 +36,7 @@ install() {
     echo "GRUB_FONT=$THEME_PATH/$font_name" >> /etc/default/grub #font location
 
     #========= GRUB config disable console
-    if [[ ! $(grep "^GRUB_TERMINAL" /etc/default/grub) ]];then
+    if [[ $(grep "^GRUB_TERMINAL" /etc/default/grub) ]];then
         printf "\033[92m[+] \033[94mDisabling GRUB_TERMINAL=console (to enable graphical GRUB menu)\n"
         sudo sed -i 's/GRUB_TERMINAL/#GRUB_TERMINAL/' /etc/default/grub
     fi
