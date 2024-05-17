@@ -38,14 +38,6 @@ font_file = preset[1]['font_family']
 if not os.path.exists(f'./fonts/{font_file}'):
     richprint(f'[red bold][Error] {font_file} is not present in ./fonts/ [/red bold]')
     exit()
-choice = Confirm.ask("[yellow bold]Would you like to customise the font ?[/yellow bold]")
-if choice:
-    table,fonts = font_table()
-    console.print(table)
-    font_choice = IntPrompt.ask("[yellow]Choice[/yellow]",choices=[str(i) for i in range(1,len(fonts)+1)])
-    preset[1]['font_family'] = fonts[font_choice]
-    font_size = IntPrompt.ask("[yellow]Font size in pixels (integer) [/yellow]")
-    preset[1]['selection_font'] = font_size
 
 if preset[0]=='Kewl': NgCommonProps(preset).export_theme()
 elif preset[0]=='Noice': NgNoiceTemplate(preset).export_theme()
